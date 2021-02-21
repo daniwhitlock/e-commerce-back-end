@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Product } = require('../../models');
+const { Category, Product, ProductTag } = require('../../models');
 
 // The `/api/categories` endpoint
 
@@ -35,14 +35,13 @@ router.get('/:id', (req, res) => {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
-      res.json(dbCategorytData);
+      res.json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
       // 500 its broken
-      res.status(500).json(err);
-    })
-  
+      res.status(500).json({ message: 'Something is wrong with the code'});
+    });  
 });
 
 router.post('/', (req, res) => {
